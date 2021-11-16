@@ -1,0 +1,328 @@
+import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Formulario extends JFrame {
+
+	private JPanel contentPane;
+	private JButton b1;
+	private JButton b2;
+	private JButton b3;
+	private JButton b4;
+	private JButton b5;
+	private JButton b6;
+	private JButton b7;
+	private JButton b8;
+	private JTextField textField;
+	private JButton buttonBalance;
+	private JLabel labelBalance;
+	private int valor1;
+	private int valor2;
+	private int valor3;
+	private int valor4;
+	private int suma = 0;
+	private int contadorProductoA = 0;
+	private int contadorProductoB = 0;
+	private int contadorProductoC = 0;
+	private int contadorProductoD = 0;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Formulario frame = new Formulario();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Formulario() {
+		setResizable(false);
+		setTitle("SPEND - MATIC");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 500, 500);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		JLabel lblCoca = new JLabel("Coca-Cola");
+		lblCoca.setBounds(45, 119, 64, 14);
+		contentPane.add(lblCoca);
+
+		JLabel lblFanta = new JLabel("Fanta");
+		lblFanta.setBounds(161, 119, 64, 14);
+		contentPane.add(lblFanta);
+
+		JLabel lblPepsi = new JLabel("Pepsi");
+		lblPepsi.setBounds(258, 119, 64, 14);
+		contentPane.add(lblPepsi);
+
+		JLabel lblSprite = new JLabel("Sprite");
+		lblSprite.setBounds(363, 119, 64, 14);
+		contentPane.add(lblSprite);
+
+		b1 = new JButton("175");
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int stockA = 10;
+				String boton1 = b1.getText();
+				valor1 = Integer.parseInt(boton1);
+
+				if (suma < valor1) {
+					textField.setText("El importe no es el correcto");
+				}
+				if (suma >= valor1) {
+					contadorProductoA++;
+					suma = 0;
+					textField.setText("Producto comprado");
+					if (contadorProductoA == stockA) {
+						b1.setEnabled(false);
+						repaint();
+					}
+				}
+
+			}
+
+		});
+		b1.setBounds(25, 144, 89, 23);
+		contentPane.add(b1);
+
+		b2 = new JButton("260");
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int stockB = 10;
+				String boton2 = b2.getText();
+				valor2 = Integer.parseInt(boton2);
+
+				if (suma < valor2) {
+					textField.setText("El importe no es el correcto");
+				}
+				if (suma >= valor2) {
+					contadorProductoB++;
+					suma = 0;
+					textField.setText("Producto comprado");
+
+					if (contadorProductoB == stockB)
+						b2.setEnabled(false);
+					repaint();
+				}
+
+			}
+		});
+		b2.setBounds(125, 144, 89, 23);
+		contentPane.add(b2);
+
+		b3 = new JButton("80");
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int stockC = 10;
+				String boton3 = b3.getText();
+				valor3 = Integer.parseInt(boton3);
+
+				if (suma < valor3) {
+					textField.setText("El importe no es el correcto");
+				}
+				if (suma >= valor3) {
+					contadorProductoC++;
+					suma = 0;
+					textField.setText("Producto comprado");
+
+					if (contadorProductoC == stockC)
+						b3.setEnabled(false);
+					repaint();
+				}
+
+			}
+		});
+		b3.setBounds(225, 144, 89, 23);
+		contentPane.add(b3);
+
+		b4 = new JButton("305");
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int stockD = 10;
+				String boton4 = b4.getText();
+				valor4 = Integer.parseInt(boton4);
+
+				if (suma < valor4) {
+					textField.setText("El importe no es el correcto");
+				}
+
+				if (suma >= valor4) {
+					contadorProductoD++;
+					suma = 0;
+					textField.setText("Producto comprado");
+
+					if (contadorProductoD == stockD)
+						b4.setEnabled(false);
+					repaint();
+				}
+
+			}
+		});
+		b4.setBounds(325, 144, 89, 23);
+		contentPane.add(b4);
+
+		b5 = new JButton("$100");
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (e.getSource() == b5) {
+					suma = suma + 100;
+					String boton5 = b5.getText();
+					textField.setText(boton5);
+				}
+
+			}
+		});
+		b5.setBounds(25, 239, 89, 23);
+		contentPane.add(b5);
+
+		b6 = new JButton("$50");
+		b6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == b6) {
+					suma = suma + 50;
+					String boton6 = b6.getText();
+					textField.setText(boton6);
+				}
+
+			}
+		});
+		b6.setBounds(125, 239, 89, 23);
+		contentPane.add(b6);
+
+		b7 = new JButton("$10");
+		b7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (e.getSource() == b7) {
+					suma = suma + 10;
+					String boton7 = b7.getText();
+					textField.setText(boton7);
+				}
+			}
+		});
+		b7.setBounds(225, 239, 89, 23);
+		contentPane.add(b7);
+
+		b8 = new JButton("$5");
+		b8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == b8) {
+					suma = suma + 5;
+					String boton8 = b8.getText();
+					textField.setText(boton8);
+
+				}
+
+			}
+		});
+		b8.setBounds(325, 239, 89, 23);
+		contentPane.add(b8);
+
+		JLabel lblNewLabel_1 = new JLabel("IMPORTE TOTAL");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(85, 330, 103, 14);
+		contentPane.add(lblNewLabel_1);
+
+		textField = new JTextField();
+		textField.setBounds(212, 327, 202, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+
+		buttonBalance = new JButton("Balance");
+		buttonBalance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (e.getSource() == buttonBalance) {
+					String balanc = String.valueOf(suma);
+					labelBalance.setText("$" + balanc);
+				}
+
+			}
+		});
+		buttonBalance.setBounds(99, 387, 89, 23);
+		contentPane.add(buttonBalance);
+
+		labelBalance = new JLabel("$ ...");
+		labelBalance.setBounds(235, 391, 75, 14);
+		contentPane.add(labelBalance);
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		super.paint(g);
+		g.setColor(Color.black);
+		g.drawLine(10, 40, 450, 40);
+		g.drawLine(10, 40, 10, 300);
+		g.drawLine(450, 40, 450, 300);
+		g.drawLine(10, 300, 450, 300);
+
+		g.setColor(Color.white);
+		g.fillRect(50, 70, 70, 70);
+		g.setColor(Color.green);
+		g.fillOval(50, 70, 70, 70);
+
+		g.setColor(Color.white);
+		g.fillRect(150, 70, 70, 70);
+		g.setColor(Color.green);
+		g.fillOval(150, 70, 70, 70);
+
+		g.setColor(Color.white);
+		g.fillRect(250, 70, 70, 70);
+		g.setColor(Color.green);
+		g.fillOval(250, 70, 70, 70);
+
+		g.setColor(Color.white);
+		g.fillRect(350, 70, 70, 70);
+		g.setColor(Color.green);
+		g.fillOval(350, 70, 70, 70);
+
+		if (contadorProductoA == 10) {
+			g.setColor(Color.red);
+			g.fillOval(50, 70, 70, 70);
+		}
+
+		if (contadorProductoB == 10) {
+			g.setColor(Color.red);
+			g.fillOval(150, 70, 70, 70);
+		}
+		if (contadorProductoC == 10) {
+			g.setColor(Color.red);
+			g.fillOval(250, 70, 70, 70);
+		}
+		if (contadorProductoD == 10) {
+			g.setColor(Color.red);
+			g.fillOval(350, 70, 70, 70);
+		}
+		if (contadorProductoA == 10 && contadorProductoB == 10 && contadorProductoC == 10 && contadorProductoD == 10) {
+			setTitle("Fuera de servicio");
+		}
+	}
+
+}
